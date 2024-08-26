@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Pago con PayPal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Compra Ahora</h1>
+        <div id="paypal-button-container"></div>
+        <div class="metodos">
+            <h1>Otros métodos de pago:</h1>
+            <a href="yape.html">
+                <img src="yape.png" alt="Yape">
+            </a>
+            <a href="plin.html">
+                <img src="plin.png" alt="Plin">
+            </a>
+        </div>
+    </div>
+
+    <script src="https://www.paypal.com/sdk/js?client-id=AV56TEgsyGv6x7np0auTqn_CoHYgzSC1EIc2stnThE2fjsTbwFY9-Uw4BC3rRdnQ7kSRX8ijrt4B1876&currency=USD"></script>
+
+    <script>
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: { 
+                            value: '10.00'
+                        }
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    alert('Pago completado por ' + details.payer.name.given_name);
+                });
+            }
+        }).render('#paypal-button-container');
+    </script>
+</body>
+</html>

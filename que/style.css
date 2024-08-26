@@ -1,0 +1,18 @@
+.container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+#paypal-button-container {
+    display: inline-block;
+    margin: 0 auto; 
+}
+
+.metodos {
+    margin-top: 30px;
+}
+
+.metodos img {
+    width: 150px;
+    margin: 10px;
+}
